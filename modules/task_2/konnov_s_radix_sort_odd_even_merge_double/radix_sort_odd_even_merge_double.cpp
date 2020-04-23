@@ -98,27 +98,28 @@ void radixSortOddEvenMergeDouble(double* array, int index, int size) {
 }
 
 void oddMerge(double* array, int index1, int size1, int index2, int size2) {
-    std::vector<double>tmp;
+    std::vector<double>tmp(size1+size2);
     int ind1 = index1 + 1, ind2 = index2 + 1;
+    int t = 0;
     while (ind1-index1 < size1 && ind2-index2 < size2) {
         if (array[ind1] < array[ind2]) {
-            tmp.push_back(array[ind1]);
+            tmp[t++] = (array[ind1]);
             ind1 += 2;
         } else {
-            tmp.push_back(array[ind2]);
+            tmp[t++] = (array[ind2]);
             ind2 += 2;
         }
     }
     while (ind1-index1 < size1) {
-        tmp.push_back(array[ind1]);
+        tmp[t++] = (array[ind1]);
         ind1+=2;
     }
     while (ind2-index2 < size2) {
-        tmp.push_back(array[ind2]);
+        tmp[t++] = (array[ind2]);
         ind2+=2;
     }
     int j = index1 + 1;
-    for (int i = 0; i < static_cast<int>(tmp.size()); i++) {
+    for (int i = 0; i < t; i++) {
         array[j] = tmp[i];
         j+=2;
     }
@@ -126,27 +127,28 @@ void oddMerge(double* array, int index1, int size1, int index2, int size2) {
 
 
 void evenMerge(double* array, int index1, int size1, int index2, int size2) {
-    std::vector<double>tmp;
+    std::vector<double>tmp(size1+size2);
     int ind1 = index1, ind2 = index2;
+    int t = 0;
     while (ind1-index1 < size1 && ind2-index2 < size2) {
         if (array[ind1] < array[ind2]) {
-            tmp.push_back(array[ind1]);
+            tmp[t++] = (array[ind1]);
             ind1 += 2;
         } else {
-            tmp.push_back(array[ind2]);
+            tmp[t++] = (array[ind2]);
             ind2 += 2;
         }
     }
     while (ind1-index1 < size1) {
-        tmp.push_back(array[ind1]);
+        tmp[t++] = (array[ind1]);
         ind1+=2;
     }
     while (ind2-index2 < size2) {
-        tmp.push_back(array[ind2]);
+        tmp[t++] = (array[ind2]);
         ind2+=2;
     }
     int j = index1;
-    for (int i = 0; i < static_cast<int>(tmp.size()); i++) {
+    for (int i = 0; i < t; i++) {
         array[j] = tmp[i];
         j+=2;
     }
